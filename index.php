@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    
+
     <?php
 
     # Створіть файл 'test.txt' , запишіть у нього рядок 'Hello Palmo''.
@@ -73,14 +73,16 @@
 
         if (is_file($file) == true) {
             $string = 'Передане значення є існуючим файлом';
+
             return "$file: " . $string;
         } else if (is_dir($file) == true) {
             $string = 'Передане значення є існуючою директорією';
-            return "$file: " . $string;
-        } else {
-            $string = 'Передане значення не є існуючим файлом або директорією';
+
             return "$file: " . $string;
         }
+        $string = 'Передане значення не є існуючим файлом або директорією';
+
+        return "$file: " . $string;
     }
 
     $data = "./TestDir/test1/Hello.txt";
@@ -201,10 +203,10 @@
     <!-- Зробіть поле введення, в яке користувач вводить рік (4 цифри), а скрипт визначає чи високосний рік. -->
 
     <form action="index.php" method="post">
-        <br>
-        <input type="year" name="year"><br>
-        <br>
-        <input type="submit" value="Check Leap">
+        <input type="year" name="year">
+        <div>
+            <input type="submit" value="Check Leap">
+        </div>
     </form>
 
     <?php
@@ -215,12 +217,10 @@
         if (strlen($year) == 4) {
             if ($year % 4 == 0) {
                 echo "Ви ввели високосний рік";
-            } else {
-                echo "Ви ввели не високосний рік";
             }
-        } else {
-            echo "Будь ласка, введіть рік.";
+            echo "Ви ввели не високосний рік";
         }
+        echo "Будь ласка, введіть рік.";
     }
     ?>
 
@@ -228,10 +228,10 @@
     <!-- Зробіть форму, яка запитує дату у форматі '31.12.2025'. За допомогою mktime та explode переведіть цю дату у формат timestamp. Дізнайтесь день тижня (словом) за введену дату. -->
 
     <form action="index.php" method="post">
-        <br>
         <input type="text" name="date" placeholder="DD.MM.YYYY" required><br>
-        <br>
-        <input type="submit" value="to timestamp">
+        <div>
+            <input type="submit" value="to timestamp">
+        </div>
     </form>
 
     <?php
@@ -251,12 +251,10 @@
 
                 echo '<br> Timestamp: ' . $timestamp;
                 echo '<br> Day of the week: ' . $dayOfWeek;
-            } else {
-                echo '<br>Введена дата некоректна.';
             }
-        } else {
-            echo '<br> Будь ласка, введіть дату у форматі DD.MM.YYYY.';
+            echo '<br>Введена дата некоректна.';
         }
+        echo '<br> Будь ласка, введіть дату у форматі DD.MM.YYYY.';
     }
 
     ?>
@@ -264,10 +262,10 @@
     <!-- Зробіть форму, яка запитує дату у форматі '2025-12-31'. За допомогою mktime та explode переведіть цю дату у формат timestamp. Дізнайтесь місяць (словом) за введену дату. -->
 
     <form action="index.php" method="post">
-        <br>
         <input type="text" name="dateYear" placeholder="YYYY-MM-DD" required><br>
-        <br>
-        <input type="submit" value="to timestamp">
+        <div>
+            <input type="submit" value="to timestamp">
+        </div>
     </form>
 
     <?php
@@ -287,25 +285,22 @@
 
                 echo '<br>Timestamp: ' . $timestamp;
                 echo '<br>Назва місяця: ' . $monthName;
-            } else {
-                echo '<br>Введена дата некоректна.';
             }
-        } else {
-            echo '<br>Будь ласка, введіть дату у форматі YYYY-MM-DD.';
+            echo '<br>Введена дата некоректна.';
         }
+        echo '<br>Будь ласка, введіть дату у форматі YYYY-MM-DD.';
     }
     ?>
 
     <!-- Порівняння дат -->
     <!-- Зробіть форму, яка запитує дві дати у форматі '2025-12-31'. Першу дату запишіть у змінну $date1, а другу в $date2. Порівняйте, яка із введених дат більше. Виведіть її на екран. -->
-
-    <form action="index.php" method="post">
-        <br>
-        <input type="text" name="date1" placeholder="YYYY-MM-DD" required><br>
-        <input type="text" name="date2" placeholder="YYYY-MM-DD" required><br>
-        <br>
-        <input type="submit" value="Порівняти дати">
-    </form>
+    <div>
+        <form action="index.php" method="post">
+            <input type="text" name="date1" placeholder="YYYY-MM-DD" required><br>
+            <input type="text" name="date2" placeholder="YYYY-MM-DD" required><br>
+            <input type="submit" value="Порівняти дати">
+        </form>
+    </div>
 
     <?php
     if (isset($_POST['date1']) && isset($_POST['date2'])) {
@@ -321,12 +316,10 @@
                 echo '<br>Дата 1: ' . $date1 . ' більша за дату 2: ' . $date2;
             } elseif ($timestamp1 < $timestamp2) {
                 echo '<br>Дата 2: ' . $date2 . ' більша за дату 1: ' . $date1;
-            } else {
-                echo '<br>Обидві дати однакові: ' . $date1;
             }
-        } else {
-            echo '<br>Будь ласка, введіть дати у форматі YYYY-MM-DD.';
+            echo '<br>Обидві дати однакові: ' . $date1;
         }
+        echo '<br>Будь ласка, введіть дати у форматі YYYY-MM-DD.';
     }
 
     ?>
@@ -351,10 +344,10 @@
     <!-- Зробіть форму, яка запитує дату-час у форматі '2025-12-31T12:13:59'. За допомогою функції strtotime та функції date перетворіть її на формат '12:13:59 31.12.2025'. -->
 
     <form action="index.php" method="post">
-        <br>
-        <input type="text" name="datetime" placeholder="YYYY-MM-DDTHH:MM:SS" required><br>
-        <br>
-        <input type="submit" value="Перетворити">
+        <input type="text" name="datetime" placeholder="YYYY-MM-DDTHH:MM:SS" required>
+        <div>
+            <input type="submit" value="Перетворити">
+        </div>
     </form>
 
     <?php
@@ -394,6 +387,7 @@
         $now = strtotime(date('Y-m-d'));
         $date = strtotime($date);
         $countdown = ($date - $now) / (60 * 60 * 24);
+
         return $countdown;
     }
 
@@ -406,13 +400,14 @@
     <!-- Зробіть форму з одним полем введення, яке користувач вводить рік. Знайдіть усі п'ятниці 13-те цього року. Результат виведіть у вигляді масиву дат. -->
 
     <form action="index.php" method="post">
-        <br>
-        <input type="number" name="year" placeholder="Введіть рік" required><br>
-        <br>
-        <input type="submit" value="Знайти п'ятниці 13-те">
+        <input type="number" name="year" placeholder="Введіть рік" required>
+        <div>
+            <input type="submit" value="Знайти п'ятниці 13-те">
+        </div>
     </form>
 
     <?php
+
     if (isset($_POST['year'])) {
         $year = intval($_POST['year']);
         $fridays13 = [];
@@ -430,9 +425,8 @@
         if (!empty($fridays13)) {
             echo '<br> П\'ятниці 13-те в році ' . $year . ':';
             echo '<pre>' . print_r($fridays13, true) . '</pre>';
-        } else {
-            echo '<br> У році ' . $year . ' немає п\'ятниць 13-те.';
         }
+        echo '<br> У році ' . $year . ' немає п\'ятниць 13-те.';
     }
     ?>
 
